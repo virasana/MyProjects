@@ -8,6 +8,12 @@ namespace StructureMapPoC.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IMessageProvider _messageProvider;
+
+        public HomeController(IMessageProvider messageProvider)
+        {
+            _messageProvider = messageProvider;
+        }
         public ActionResult Index()
         {
             return View();
@@ -15,16 +21,38 @@ namespace StructureMapPoC.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = _messageProvider.GetMessage();
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = _messageProvider.GetMessage();
 
             return View();
         }
+    }
+
+    public interface IMessageProvider
+    {
+        string GetMessage();
+        string SomeAttribute { get; set; }
+    }
+
+    public class MessageProvider : IMessageProvider
+    {
+        private readonly string _message;
+
+        public MessageProvider(string message)
+        {
+            _message = message;
+        }
+        public string GetMessage()
+        {
+            return $"{_message} with some attribute {this.SomeAttribute ?? "banana"}";
+        }
+
+        public string SomeAttribute { get; set; }
     }
 }

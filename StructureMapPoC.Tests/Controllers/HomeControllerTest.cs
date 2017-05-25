@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using StructureMapPoC;
 using StructureMapPoC.Controllers;
 
 namespace StructureMapPoC.Tests.Controllers
@@ -12,11 +7,23 @@ namespace StructureMapPoC.Tests.Controllers
     [TestClass]
     public class HomeControllerTest
     {
+        private readonly IMessageProvider _messageProvider;
+
+        public HomeControllerTest()
+        {
+            _messageProvider = new MessageProvider("The TEST message!")
+            {
+                SomeAttribute = "SomeAttribute! From the Test!"
+            };
+            
+        }
         [TestMethod]
         public void Index()
         {
+
             // Arrange
-            HomeController controller = new HomeController();
+            
+            var controller = new HomeController(_messageProvider);
 
             // Act
             ViewResult result = controller.Index() as ViewResult;
@@ -29,20 +36,20 @@ namespace StructureMapPoC.Tests.Controllers
         public void About()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            var controller = new HomeController(_messageProvider);
 
             // Act
             ViewResult result = controller.About() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            Assert.IsInstanceOfType(result.ViewBag.Message, typeof(string));
         }
 
         [TestMethod]
         public void Contact()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            var controller = new HomeController(_messageProvider);
 
             // Act
             ViewResult result = controller.Contact() as ViewResult;
