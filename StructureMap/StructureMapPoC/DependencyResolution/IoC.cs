@@ -15,13 +15,20 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using StructureMap;
+using System.Diagnostics;
 
-namespace StructureMapPoC.DependencyResolution {
-    using StructureMap;
-	
-    public static class IoC {
-        public static IContainer Initialize() {
-            return new Container(c => c.AddRegistry<DefaultRegistry>());
+namespace StructureMapPoC.DependencyResolution
+{
+    
+
+    public static class IoC
+    {
+        public static IContainer Initialize()
+        {
+            var container = new Container(c => c.AddRegistry<DefaultRegistry>());
+            Debug.WriteLine(container.WhatDoIHave());
+            return container;
         }
     }
 }
