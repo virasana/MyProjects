@@ -53,10 +53,6 @@ export class ProfileComponent implements OnInit {
   }
 
   validateFirstName(){
-    console.log(this.firstName.valid && this.firstName.touched);
-    console.log(this.firstName.valid);
-    console.log(this.firstName.touched);
-    console.log('===================');
     return this.firstName.valid || this.firstName.untouched 
   }
 
