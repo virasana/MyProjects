@@ -29,7 +29,11 @@ export class ProfileComponent implements OnInit {
       value: this.authService.currentUser.userName, 
       disabled: true
     });
-    this.firstName = new FormControl(this.authService.currentUser.firstName, Validators.required);
+    this.firstName = new FormControl(this.authService.currentUser.firstName, 
+    [
+      Validators.required, 
+      Validators.pattern('[a-zA-Z].*')
+    ]);
     this.lastName = new FormControl(this.authService.currentUser.lastName, Validators.required);
     this.password = new FormControl(this.authService.currentUser.password);
 
