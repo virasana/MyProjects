@@ -11,8 +11,9 @@ import { AuthService } from './auth.service'
 
 export class LoginComponent implements OnInit {
     constructor(private authService: AuthService, private route: Router) { }
+    
     login(formValues) {
-        this.authService.loginUser(formValues.user, formValues.password)
+        this.authService.loginUser(formValues.userName, formValues.password)
         this.route.navigate(['events']);
     }
 

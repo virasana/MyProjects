@@ -13,7 +13,7 @@ import { AuthService } from '../user/auth.service';
 })
 
 export class NavBarComponent implements OnInit {
-    constructor(private auth: AuthService ) { 
+    constructor(private authService: AuthService ) { 
     
     }
 
