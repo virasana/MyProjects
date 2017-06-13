@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { NavBarComponent } from './nav/navbar.component'
 import { ToastrService } from './common/toastr.service'
 import { AppRoutes } from './routes';
@@ -22,7 +23,9 @@ import {
 @NgModule({
     imports: [
         BrowserModule,
-        RouterModule.forRoot(AppRoutes)
+        RouterModule.forRoot(AppRoutes),
+        FormsModule, 
+        ReactiveFormsModule
     ],
     declarations: [
         EventsAppComponent,
