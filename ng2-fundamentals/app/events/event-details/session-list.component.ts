@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ISession } from '../shared/index'
 
 @Component({
@@ -6,9 +6,24 @@ import { ISession } from '../shared/index'
     templateUrl: 'app/events/event-details/session-list.component.html'
 })
 
-export class SessionListComponent implements OnInit {
+export class SessionListComponent implements OnInit, OnChanges {
     constructor() { }
-    @Input() sessions: ISession[]
-
+    @Input() sessions: ISession[];
+    @Input() filterBy: string;
+    visibleSessions: ISession[] = [];
     ngOnInit() { }
+    ngOnChanges() {
+        if (this.sessions) {
+            this.filterSessions(this.filterBy);
+        }
+    }
+    filterSessions(filter: string) {
+        if (filter === 'all'){
+            this.visibleSessions = this.sessions.slice(0);
+        } else {
+            this.visibleSessions = this.sessions.filter(s => {
+                return s.level.toLocaleLowerCase() === filter
+            })
+        }
+    }
 }
