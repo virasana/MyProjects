@@ -17,7 +17,8 @@ import {
     CreateEventComponent,
     EventRouteActivator,
     EventListResolver, 
-    CreateSessionComponent
+    CreateSessionComponent,
+    SessionListComponent
 } from './events/index'
 
 
@@ -36,7 +37,8 @@ import {
         EventDetailsComponent,
         CreateEventComponent,
         Error404Component,
-        CreateSessionComponent
+        CreateSessionComponent,
+        SessionListComponent
     ],
     providers: [
         EventService, ToastrService, EventRouteActivator, EventListResolver, AuthService,
