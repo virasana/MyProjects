@@ -19,7 +19,8 @@ import {
     EventRouteActivator,
     EventListResolver, 
     CreateSessionComponent,
-    SessionListComponent
+    SessionListComponent,
+    DurationPipe
 } from './events/index'
 
 
@@ -40,7 +41,8 @@ import {
         Error404Component,
         CreateSessionComponent,
         SessionListComponent,
-        CollapsableComponent
+        CollapsableComponent,
+        DurationPipe
     ],
     providers: [
         EventService, ToastrService, EventRouteActivator, EventListResolver, AuthService,
