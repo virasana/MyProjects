@@ -2,16 +2,14 @@ import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { NavBarComponent } from './nav/navbar.component'
-import { TOASTR_TOKEN, Toaster } from './common/toastr.service'
-import { CollapsableComponent } from './common/collapsable-well.component'
-import { AppRoutes } from './routes';
-import { RouterModule } from '@angular/router';
-import { Error404Component } from './errors/404.errors.component';
-import { EventsAppComponent } from './events-app.component'
-import { AuthService } from './user/auth.service'
-
-declare let toastr: Toaster;
-
+import {
+    JQ_TOKEN,
+    TOASTR_TOKEN,
+    Toaster,
+    CollapsableComponent,
+    SimpleModalComponent,
+    ModalTriggerDirective
+} from './common/index';
 import {
     EventsListComponent,
     EventThumbnailComponent,
@@ -19,18 +17,25 @@ import {
     EventDetailsComponent,
     CreateEventComponent,
     EventRouteActivator,
-    EventListResolver, 
+    EventListResolver,
     CreateSessionComponent,
     SessionListComponent,
     DurationPipe
 } from './events/index'
+import { AppRoutes } from './routes';
+import { RouterModule } from '@angular/router';
+import { Error404Component } from './errors/404.errors.component';
+import { EventsAppComponent } from './events-app.component'
+import { AuthService } from './user/auth.service'
 
+declare let toastr: Toaster;
+declare let jQuery: Object;
 
 @NgModule({
     imports: [
         BrowserModule,
         RouterModule.forRoot(AppRoutes),
-        FormsModule, 
+        FormsModule,
         ReactiveFormsModule
     ],
     declarations: [
@@ -44,15 +49,18 @@ import {
         CreateSessionComponent,
         SessionListComponent,
         CollapsableComponent,
-        DurationPipe
+        SimpleModalComponent,
+        DurationPipe,
+        ModalTriggerDirective
     ],
     providers: [
         EventService, EventRouteActivator, EventListResolver, AuthService,
-        { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState }, 
-        { provide: TOASTR_TOKEN, useValue: toastr }
+        { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
+        { provide: TOASTR_TOKEN, useValue: toastr } ,
+        { provide: JQ_TOKEN, useValue: jQuery }
+
     ],
     bootstrap: [EventsAppComponent]
-
 })
 export class AppModule { }
 
