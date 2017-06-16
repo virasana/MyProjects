@@ -38,15 +38,22 @@ export class EventService {
                         .indexOf(searchTerm) > -1);
             matchingSessions.map((session: any) => {
                  session.eventId = event.id 
+                 session.name = `${session.name} | ${event.name}`
             });
 
-            results = results.concat(matchingSessions);
+            results = results.concat(matchingSessions).sort(sortBySession);
         });
 
         var emitter = new EventEmitter(true);
         setTimeout(()=> { emitter.emit(results) } , 100);
         return emitter;
     }
+}
+
+function sortBySession(s1: ISession, s2: ISession){
+    if(s1.name > s2.name) return 1;
+    else if(s1.name === s2.name) return 0; 
+    else return -1; 
 }
 
 const EVENTS: IEvent[] = [
