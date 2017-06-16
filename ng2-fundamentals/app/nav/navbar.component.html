@@ -36,20 +36,14 @@
                 <div class="form-group">
                     <input [(ngModel)]="searchTerm" name="searchTerm" type="text" class="form-control" placeholder="Search Sessions">
                 </div>
-                <button class="btn btn-primary" modal-trigger>Search</button>
+                <button class="btn btn-primary" modal-trigger="searchResults">Search</button>
             </form>
         </div>
     </div>
 </div>
 
-<!-- debug -->
-<div><a [routerLink]="['/events/1']" routerLinkActive="active">Link 1</a></div>
-<div><a (click)="onLinkClick(2);">Link 2 (Calls this.route.navigate on component</a></div>
-<div><a [routerLink]="['/events', 3]" routerLinkActive="active">Link 3</a></div>
-<div><a [routerLink]="['/events', 4]" routerLinkActive="active">Link 4</a></div>
-<!-- debug -->
 
-<simple-modal title="Matching Sessions ">
+<simple-modal elementId="searchResults" title="Matching Sessions ">
     <div class="list-group ">
         <a class="list-group-item " *ngFor="let session of foundSessions " [routerLink]="[ '/events', session.eventId] ">
             {{session.name}}

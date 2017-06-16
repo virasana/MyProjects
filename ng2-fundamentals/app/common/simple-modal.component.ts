@@ -3,7 +3,7 @@ import { Component, OnInit, Input , ElementRef, Inject } from '@angular/core';
 @Component({
     selector: 'simple-modal',
     template: `
-<div id="simple-modal" class="modal fade" tabindex="-1">
+<div id="{{elementId}}" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-header">
             <button type="button" class="close"
@@ -24,5 +24,6 @@ import { Component, OnInit, Input , ElementRef, Inject } from '@angular/core';
 export class SimpleModalComponent implements OnInit {
     
     @Input() title: string;
+    @Input() elementId: string;
     ngOnInit() { }
 }
