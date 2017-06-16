@@ -13,7 +13,6 @@ import { IEvent } from './shared/index';
             <event-thumbnail [event]="event"></event-thumbnail>
         </div>
     </div>
-    
 </div>
     ` 
 })  

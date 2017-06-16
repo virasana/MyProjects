@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../user/auth.service';
 import { ISession } from '../events/shared/event.model';
 import { EventService } from '../events/shared/event.service';
+import { Router } from '@angular/router'
 
 @Component({
     selector: 'navbar',
@@ -15,7 +16,7 @@ import { EventService } from '../events/shared/event.service';
 })
 
 export class NavBarComponent implements OnInit {
-    constructor(private authService: AuthService, private eventService: EventService ) { 
+    constructor(private authService: AuthService, private eventService: EventService, private router: Router ) { 
     
     }
     searchTerm: string = '';
@@ -27,5 +28,9 @@ export class NavBarComponent implements OnInit {
             this.foundSessions = sessions;
             console.log(this.foundSessions);
         });
+    }
+
+    onLinkClick(id: number){
+        this.router.navigate(['events/', id])
     }
 }
