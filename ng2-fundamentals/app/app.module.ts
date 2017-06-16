@@ -20,13 +20,16 @@ import {
     EventListResolver,
     CreateSessionComponent,
     SessionListComponent,
-    DurationPipe
+    DurationPipe,
+    UpvoteComponent, 
+    VoterService
 } from './events/index'
 import { AppRoutes } from './routes';
 import { RouterModule } from '@angular/router';
 import { Error404Component } from './errors/404.errors.component';
 import { EventsAppComponent } from './events-app.component'
 import { AuthService } from './user/auth.service'
+
 
 declare let toastr: Toaster;
 declare let jQuery: Object;
@@ -51,10 +54,11 @@ declare let jQuery: Object;
         CollapsableComponent,
         SimpleModalComponent,
         DurationPipe,
-        ModalTriggerDirective
+        ModalTriggerDirective,
+        UpvoteComponent
     ],
     providers: [
-        EventService, EventRouteActivator, EventListResolver, AuthService,
+        EventService, EventRouteActivator, EventListResolver, AuthService, VoterService,
         { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
         { provide: TOASTR_TOKEN, useValue: toastr } ,
         { provide: JQ_TOKEN, useValue: jQuery }
