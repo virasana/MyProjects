@@ -22,7 +22,8 @@ import {
     SessionListComponent,
     DurationPipe,
     UpvoteComponent, 
-    VoterService
+    VoterService,
+    LocationValidator
 } from './events/index'
 import { AppRoutes } from './routes';
 import { RouterModule } from '@angular/router';
@@ -55,7 +56,8 @@ declare let jQuery: Object;
         SimpleModalComponent,
         DurationPipe,
         ModalTriggerDirective,
-        UpvoteComponent
+        UpvoteComponent, 
+        LocationValidator
     ],
     providers: [
         EventService, EventRouteActivator, EventListResolver, AuthService, VoterService,

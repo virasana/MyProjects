@@ -16,7 +16,9 @@ export class EventService {
         return EVENTS.find(event => event.id === id)
     }
 
-    saveEvent(event){
+    saveEvent(event): Observable<IEvent> {
+        let headers = new Headers({ 'COntent-Type': 'application/json'});
+        let options = new RequestOptions()
         event.id=999;
         event.session = [];
         EVENTS.push(event);
