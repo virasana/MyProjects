@@ -9,6 +9,6 @@ export class EventListResolver implements Resolve<any> {
     }
 
     resolve() {
-        return this.eventService.getEvents().map(events => events);
+        return this.eventService.getEvents(); //would normally need to add .subscribe() here, but the resolver calls .subscribe() for us.
     }
 }

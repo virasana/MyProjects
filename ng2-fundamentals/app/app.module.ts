@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { NavBarComponent } from './nav/navbar.component'
+import { HttpModule } from '@angular/http';
+
 import {
     JQ_TOKEN,
     TOASTR_TOKEN,
@@ -40,7 +42,8 @@ declare let jQuery: Object;
         BrowserModule,
         RouterModule.forRoot(AppRoutes),
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        HttpModule
     ],
     declarations: [
         EventsAppComponent,
