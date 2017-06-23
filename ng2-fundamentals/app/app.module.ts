@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { NavBarComponent } from './nav/navbar.component'
-import { HttpModule } from '@angular/http';
+import { HttpModule, Headers, RequestOptions } from '@angular/http';
 
 import {
     JQ_TOKEN,
