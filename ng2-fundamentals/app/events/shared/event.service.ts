@@ -5,7 +5,7 @@ import { Http, Response } from '@angular/http';
 
 @Injectable()
 export class EventService {
-
+ 
     constructor(private http: Http) {
         
     }
@@ -14,11 +14,14 @@ export class EventService {
         return this.http.get('/api/events')
             .map((response: Response) => { 
                 return <IEvent[]>response.json();
-        }).catch(this. handleError); ;
+        }).catch(this. handleError); 
     }
 
-    getEvent(id: number): IEvent{
-        return EVENTS.find(event => event.id === id)
+    getEvent(id: number): Observable<IEvent>{
+        return this.http.get(`/api/events/${id}`)
+            .map((response: Response) => { 
+                return <IEvent>response.json();
+        }).catch(this. handleError); 
     }
 
     // saveEvent(event): Observable<IEvent> {

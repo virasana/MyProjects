@@ -18,7 +18,7 @@ import {
     EventService,
     EventDetailsComponent,
     CreateEventComponent,
-    EventRouteActivator,
+    EventResolver,
     EventListResolver,
     CreateSessionComponent,
     SessionListComponent,
@@ -63,7 +63,7 @@ declare let jQuery: Object;
         LocationValidator
     ],
     providers: [
-        EventService, EventRouteActivator, EventListResolver, AuthService, VoterService,
+        EventService, EventResolver, EventListResolver, AuthService, VoterService,
         { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
         { provide: TOASTR_TOKEN, useValue: toastr } ,
         { provide: JQ_TOKEN, useValue: jQuery }
