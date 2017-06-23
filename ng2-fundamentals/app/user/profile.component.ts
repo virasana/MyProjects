@@ -25,15 +25,15 @@ export class ProfileComponent implements OnInit {
   private password: FormControl;
 
   ngOnInit() {
-    this.userName = new FormControl({ 
-      value: this.authService.currentUser.userName, 
+    this.userName = new FormControl({
+      value: this.authService.currentUser.userName,
       disabled: true
     });
-    this.firstName = new FormControl(this.authService.currentUser.firstName, 
-    [
-      Validators.required, 
-      Validators.pattern('[a-zA-Z].*')
-    ]);
+    this.firstName = new FormControl(this.authService.currentUser.firstName,
+      [
+        Validators.required,
+        Validators.pattern('[a-zA-Z].*')
+      ]);
     this.lastName = new FormControl(this.authService.currentUser.lastName, Validators.required);
     this.password = new FormControl(this.authService.currentUser.password);
 
@@ -51,17 +51,18 @@ export class ProfileComponent implements OnInit {
 
   saveProfile(formValues) {
     if (this.profileForm.valid) {
-      this.authService.updateCurrentUser(formValues.firstName, formValues.lastName, formValues.password);
-      this.router.navigate(['events']);
-      this.toastr.success('Profile saved!');
+      this.authService.updateCurrentUser(formValues.firstName, formValues.lastName, formValues.password).subscribe(() => {
+        this.toastr.success('Profile saved!');
+        this.router.navigate(['events']);
+      });
     }
   }
 
-  validateFirstName(){
-    return this.firstName.valid || this.firstName.untouched 
+  validateFirstName() {
+    return this.firstName.valid || this.firstName.untouched
   }
 
-  validateLastName(){
-    return this.lastName.valid || this.lastName.untouched 
+  validateLastName() {
+    return this.lastName.valid || this.lastName.untouched
   }
 }
