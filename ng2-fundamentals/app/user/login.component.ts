@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
                 }
             }
         );
-    }
+     }
 
     cancel() {
         this.route.navigate(['events']);
