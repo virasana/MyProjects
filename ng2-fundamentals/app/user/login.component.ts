@@ -11,10 +11,18 @@ import { AuthService } from './auth.service'
 
 export class LoginComponent implements OnInit {
     constructor(private authService: AuthService, private route: Router) { }
-    
+    loginInvalid = false;
+
     login(formValues) {
-        this.authService.loginUser(formValues.userName, formValues.password)
-        this.route.navigate(['events']);
+        this.authService.loginUser(formValues.userName, formValues.password).subscribe(
+            resp => {
+                if(!resp){
+                    this.loginInvalid = true;
+                } else {
+                    this.route.navigate(['events']);
+                }
+            }
+        );
     }
 
     cancel() {

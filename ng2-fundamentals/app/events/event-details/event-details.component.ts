@@ -28,10 +28,6 @@ export class EventDetailsComponent implements OnInit {
         });
     }
 
-    ngOnDestroy(){
-        this.sub.unsubscribe();
-    };
-
     addSession(){
         this.addMode = true;
     }
